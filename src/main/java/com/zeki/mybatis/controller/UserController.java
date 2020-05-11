@@ -32,7 +32,7 @@ public class UserController {
 
     @RequestMapping("/hello")
     @ResponseBody
-    public String hello(){
+    public String hello() {
         return "hello world";
     }
 
