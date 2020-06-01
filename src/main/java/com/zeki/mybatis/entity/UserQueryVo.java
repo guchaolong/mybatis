@@ -1,5 +1,7 @@
 package com.zeki.mybatis.entity;
 
+import org.springframework.web.servlet.DispatcherServlet;
+
 import java.util.List;
 
 /**
@@ -12,6 +14,7 @@ import java.util.List;
  * @version 1.0
  */
 public class UserQueryVo {
+	DispatcherServlet
 	
 	//传入多个id
 	private List<Integer> ids;
