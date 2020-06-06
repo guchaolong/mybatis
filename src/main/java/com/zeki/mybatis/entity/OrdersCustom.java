@@ -1,5 +1,7 @@
 package com.zeki.mybatis.entity;
 
+import org.springframework.web.servlet.HandlerAdapter;
+
 /**
  * 订单自定义po，包括订单信息、用户信息
  * 
