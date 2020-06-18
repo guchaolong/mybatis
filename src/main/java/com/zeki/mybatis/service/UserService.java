@@ -10,7 +10,10 @@
  */
 package com.zeki.mybatis.service;
 
+import com.zeki.mybatis.dto.UserInfoDTO;
 import com.zeki.mybatis.entity.User;
+
+import java.util.List;
 
 /**
  * Description:
@@ -20,4 +23,6 @@ import com.zeki.mybatis.entity.User;
  */
 public interface UserService {
     User findUserById(int id) throws Exception;
+
+    List<UserInfoDTO> getUserInfo();
 }

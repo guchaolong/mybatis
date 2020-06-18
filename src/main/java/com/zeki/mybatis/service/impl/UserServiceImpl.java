@@ -10,11 +10,14 @@
  */
 package com.zeki.mybatis.service.impl;
 
+import com.zeki.mybatis.dto.UserInfoDTO;
 import com.zeki.mybatis.entity.User;
 import com.zeki.mybatis.mapper.UserMapper;
 import com.zeki.mybatis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Description:
@@ -31,5 +34,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserById(int id)  throws Exception {
         return userMapper.findUserById(id);
+    }
+
+    @Override
+    public List<UserInfoDTO> getUserInfo() {
+        return userMapper.getUserInfo();
     }
 }

@@ -10,6 +10,7 @@
  */
 package com.zeki.mybatis.mapper;
 
+import com.zeki.mybatis.dto.UserInfoDTO;
 import com.zeki.mybatis.entity.User;
 import com.zeki.mybatis.entity.UserCustom;
 import com.zeki.mybatis.entity.UserQueryVo;
@@ -34,6 +35,9 @@ public interface UserMapper {
      * @throws Exception
      */
     List<UserCustom> findUserList(UserQueryVo userQueryVo) throws Exception;
+
+
+    List<UserInfoDTO> getUserInfo();
 
 
     /**

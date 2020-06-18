@@ -10,14 +10,14 @@
  */
 package com.zeki.mybatis.controller;
 
+import com.zeki.mybatis.dto.UserInfoDTO;
 import com.zeki.mybatis.entity.User;
 import com.zeki.mybatis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.DispatcherServlet;
+
+import java.util.List;
 
 /**
  * Description:
@@ -42,5 +42,11 @@ public class UserController {
     @ResponseBody
     public User findUserById(@PathVariable(value = "id") int id) throws Exception {
         return userService.findUserById(id);
+    }
+
+    @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public List<UserInfoDTO> getUserInfo() throws Exception {
+        return userService.getUserInfo();
     }
 }

@@ -8,6 +8,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 <mapper namespace="com.zeki.mybatis.mapper.UserMapper">
 
+	<select id="getUserInfo"  resultMap="UserInfoDTOMap">
+		SELECT u.*,d.`name` as dept_name from t_user u left join dept d on u.dept_id = d.dept_id;
+	</select>
+
+	<resultMap id="UserInfoDTOMap" type="com.zeki.mybatis.dto.UserInfoDTO">
+		<result property="userId" column="user_id" /><result property="deptId" column="dept_id"/><result property="name" column="name"/>
+		<association property="deptInfo" javaType="com.zeki.mybatis.dto.DeptDTO">
+			<result property="deptId" column="dept_id"/>
+			<result property="name" column="dept_name"/>
+		</association>
+		<collection property="roleInfo" column="{userId=user_id,userName=name}" javaType="list" select="selectAllRoles"></collection>
+	</resultMap>
+
+	<resultMap id="RoleDTOMap" type="com.zeki.mybatis.dto.RoleDTO">
+		<result property="roleId" column="role_id" />
+		<result property="name" column="name"/>
+	</resultMap>
+
+	<select id="selectAllRoles" resultMap="RoleDTOMap" parameterType="map">
+        SELECT r.* from role r inner join user_role ur on r.role_id=ur.role_id and ur.user_id = #{userId}
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<!-- 定义sql片段
 	id：sql片段的唯 一标识
 	
