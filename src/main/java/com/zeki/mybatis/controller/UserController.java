@@ -32,6 +32,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @RequestMapping("/hello")
     @ResponseBody
     public String hello() {
