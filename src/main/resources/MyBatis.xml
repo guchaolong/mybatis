@@ -1,0 +1,82 @@
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--Mybatis全局配置文件,springboot整合之后会有自动配置，可以不用这个全局配置文件了，这里只是学习参考使用-->
+
+<configuration>
+
+    <!-- 首行引入配置文件 -->
+    <properties resource="db.properties" />
+
+
+
+    <!--全局配置参数-->
+    <settings>
+        <!-- 输出日志配置 -->
+        <setting name="logImpl" value="LOG4J" />
+        <!--这个配置使全局的映射器启用或禁用二级缓存 -->
+        <setting name="cacheEnabled" value="true" />
+        <!-- 全局启用或禁用延迟加载。当禁用时，所有的关联对象都会即时加载 -->
+        <setting name="lazyLoadingEnabled" value="true" />
+        <!--指定mybatis如何映射列到属性 PARTIAL 只会自动映射简单，没有嵌套的结果 FULL 会自动映射任意复杂的结果（嵌套或其他情况) -->
+        <setting name="autoMappingBehavior" value="PARTIAL" />
+        <!-- 设置超时时间 它决定驱动等待一个数据库的响应的时间 -->
+        <setting name="defaultStatementTimeout" value="25" />
+        <!--是否开启自动驼峰命名规则映射，即从经典数据库列名A_COLUMN 到经典java属性名aColumn的类似映射 默认false -->
+        <setting name="mapUnderscoreToCamelCase" value="false" />
+    </settings>
+
+
+    <!-- 类型别名是java类型设置一个短的名字 可以方便地引用某个类 StudentMapper.xml里面的 resultType可以省略包名 -->
+    <typeAliases>
+        <package name="com.wsm.pojo"></package>
+        <!-- <typeAlias type="com.wsm.pojo.Student" alias="Student"></typeAlias> -->
+    </typeAliases>
+
+    <typeHandlers></typeHandlers>
+
+
+    <!-- 工作环境 默认是开发模式 -->
+    <environments default="test">
+        <!-- 配置工作环境为开发者模式 可配置多个 -->
+        <environment id="development">
+            <!-- 采用jdbc的事务管理 -->
+            <transactionManager type="JDBC" />
+            <!-- 数据源的配置 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${mysql.driver}" />
+                <property name="url" value="${mysql.url}" />
+                <property name="username" value="${mysql.username}" />
+                <property name="password" value="${mysql.password}" />
+            </dataSource>
+        </environment>
+
+        <environment id="test">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${oracle.driver}" />
+                <property name="url" value="${oracle.url}" />
+                <property name="username" value="${oracle.username}" />
+                <property name="password" value="${oracle.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <databaseIdProvider type="DB_VENDOR">
+        <property name="MySQL" value="mysql" />
+        <property name="Oracle" value="orcl" />
+    </databaseIdProvider>
+
+    <!-- 注册sql映射文件 全局映射文件 映射到包里的路径 使用/ -->
+    <mappers>
+        <!--注册方式:逐个注册SQL映射文件 -->
+        <mapper resource="com/wsm/dao/StudentMapper.xml"/>
+        <!--class方式： 1.SQL映射文件名和绑定接口名相同 2.namespace和绑定接口路径相同 3.在接口上全用注解实现，可以不要SQL映射文件 -->
+        <!-- <mapper class="com.yc.dao.StudentMapper"/> -->
+        <!--注册方式:批量注册：要求和Class方式一样-->
+        <!-- <package name="com.yc.dao"/> -->
+    </mappers>
+</configuration>

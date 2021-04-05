@@ -16,10 +16,12 @@
         <result property="userId" column="user_id"/>
         <result property="deptId" column="dept_id"/>
         <result property="name" column="name"/>
+
         <association property="deptInfo" javaType="com.zeki.mybatis.dto.DeptDTO">
             <result property="deptId" column="dept_id"/>
             <result property="name" column="dept_name"/>
         </association>
+
         <collection property="roleInfo" column="{userId=user_id,userName=name}" javaType="list"
                     select="selectAllRoles"></collection>
     </resultMap>
