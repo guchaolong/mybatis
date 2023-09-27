@@ -23,7 +23,8 @@
         </association>
 
         <collection property="roleInfo" column="{userId=user_id,userName=name}" javaType="list"
-                    select="selectAllRoles"></collection>
+                    select="selectAllRoles">
+        </collection>
     </resultMap>
 
     <resultMap id="RoleDTOMap" type="com.zeki.mybatis.dto.RoleDTO">
@@ -131,7 +132,8 @@
        -->
         <where>
             <!-- 引用sql片段 的id，如果refid指定的id不在本mapper文件中，需要前边加namespace -->
-            <include refid="query_user_where"></include>
+            <include refid="query_user_where">
+            </include>
             <!-- 在这里还要引用其它的sql片段  -->
         </where>
 
